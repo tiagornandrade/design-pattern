@@ -1,48 +1,17 @@
 # Design Pattern
 
-## Facade
-O Facade é um padrão de projeto estrutural que fornece uma interface simplificada para uma biblioteca, um framework, ou qualquer conjunto complexo de classes.
+## O que é um padrão de projeto?
+Padrões de projeto são soluções típicas para problemas comuns em projeto de software. Eles são como plantas de obra pré fabricadas que você pode customizar para resolver um problema de projeto recorrente em seu código.
 
----
-### Propósito
-Imagine que você precisa fazer seu código funcionar com um amplo conjunto de objetos que pertencem a uma sofisticada biblioteca ou framework. Normalmente, você precisaria inicializar todos aqueles objetos, rastrear as dependências, executar métodos na ordem correta, e assim por diante.
+Você não pode apenas encontrar um padrão e copiá-lo para dentro do seu programa, como você faz com funções e bibliotecas que encontra por aí. O padrão não é um pedaço de código específico, mas um conceito geral para resolver um problema em particular. Você pode seguir os detalhes do padrão e implementar uma solução que se adeque às realidades do seu próprio programa.
 
-Como resultado, a lógica de negócio de suas classes vai ficar firmemente acoplada aos detalhes de implementação das classes de terceiros, tornando difícil compreendê-lo e mantê-lo.
+Os padrões são frequentemente confundidos com algoritmos, porque ambos os conceitos descrevem soluções típicas para alguns problemas conhecidos. Enquanto um algoritmo sempre define um conjunto claro de ações para atingir uma meta, um padrão é mais uma descrição de alto nível de uma solução. O código do mesmo padrão aplicado para dois programas distintos pode ser bem diferente.
 
----
-### Problema
-Uma fachada é uma classe que fornece uma interface simples para um subsistema complexo que contém muitas partes que se movem. Uma fachada pode fornecer funcionalidades limitadas em comparação com trabalhar com os subsistemas diretamente. Contudo, ela inclui apenas aquelas funcionalidades que o cliente se importa.
+Uma analogia a um algoritmo é que ele seria uma receita de comida: ambos têm etapas claras para chegar a um objetivo. Por outro lado, um padrão é mais como uma planta de obras: você pode ver o resultado e suas funcionalidades, mas a ordem exata de implementação depende de você.
 
-Ter uma fachada é útil quando você precisa integrar sua aplicação com uma biblioteca sofisticada que tem dúzias de funcionalidades, mas você precisa de apenas um pouquinho delas.
 
-Por exemplo, uma aplicação para uma cafeteria onde o cliente só deseja realizar o pedido, e ele não está interessado em ter que pegar o café no deposito, ligar a máquina de café e prepará-lo, e ter que pegar o café para levar até o balcão. Contudo, tudo que ela realmente precisa é uma classe com um único método codificar(nomeDoArquivo, formato). Com uma classe de fachada, esse trabalho é todo resumido em uma única ação.
 
----
-### Solução
-```mermaid
-classDiagram
-    note for CoffeShop "Client"
-    CoffeShop --|> Deposit
-    CoffeShop --|> CoffeeMachine
-    CoffeShop --|> Delivery
-
-    class CoffeShop {
-        +String
-        +order()
-    }
-    class Deposit {
-        +String
-        +getCoffee()
-    }
-
-    class CoffeeMachine {
-        +String
-        +on()
-        +prepare()
-    }
-
-    class Delivery {
-        +String
-        +send()
-    }
-```
+----
+- [Sumário]()
+    - [Facade](./facade/FACADE.md)
+    - [Factory](./factory/FACTORY.md)
