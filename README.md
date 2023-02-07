@@ -12,6 +12,7 @@ Uma analogia a um algoritmo é que ele seria uma receita de comida: ambos têm e
 
 
 ----
-- [Sumário]()
-    - [Facade](./facade/FACADE.md)
-    - [Factory](./factory/FACTORY.md)
+- [Creational]()
+    - [Factory](./creational/factory/FACTORY.md)
+- [Structural]()
+    - [Facade](./structural/facade/FACADE.md)

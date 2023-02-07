@@ -1,2 +1,0 @@
-[Voltar](../README.md)
-# Factory
