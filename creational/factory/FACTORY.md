@@ -20,28 +20,34 @@ Como resultado, você terá um código bastante sujo, repleto de condicionais qu
 ### Solução
 ```mermaid
 classDiagram
-    note for CoffeShop "Client"
-    CoffeShop --|> Deposit
-    CoffeShop --|> CoffeeMachine
-    CoffeShop --|> Delivery
-
-    class CoffeShop {
-        +String
-        +order()
-    }
-    class Deposit {
-        +String
-        +getCoffee()
+    note for Creator "Product p = createProduct() \n p.doStuff()"
+    Creator <|-- ConcreteCreatorA
+    Creator <|-- ConcreteCreatorB
+    Creator ..> Product
+    Product <|.. Concrete ProductA
+    Product <|.. Concrete ProductB
+    
+    class Creator {
+        +someOperation()
+        +createProduct() Product
     }
 
-    class CoffeeMachine {
-        +String
-        +on()
-        +prepare()
+    class ConcreteCreatorA {
+        +createProduct() Product
     }
 
-    class Delivery {
-        +String
-        +send()
+    class ConcreteCreatorB {
+        +createProduct() Product
+    }
+
+    class Product {
+        <<interface>>
+        +doStuff()
+    }
+
+    class Concrete ProductA {
+    }
+
+    class Concrete ProductB {
     }
 ```
