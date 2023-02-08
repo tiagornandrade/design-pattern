@@ -1,5 +1,6 @@
 from subsystems import *
 
+
 def client_code(facade: Facade) -> None:
     print(facade.operation(), end="")
 
