@@ -20,27 +20,32 @@ Por exemplo, uma aplicação para uma cafeteria onde o cliente só deseja realiz
 ### Solução
 ```mermaid
 classDiagram
-    note for CoffeShop "Client"
-    CoffeShop --|> Deposit
-    CoffeShop --|> CoffeeMachine
-    CoffeShop --|> Delivery
+    Client --|> Facade
+    Facade --|> Additional Facade
+    Facade ..|> Subsystem1
+    Facade ..|> Subsystem2
+    Additional Facade ..|> Subsystem1
+    Additional Facade ..|> Subsystem2
 
-    class CoffeShop {
-        +String
-        +order()
+    class Client {
+
     }
-    class Deposit {
+    class Facade {
+        - linksToSubsystemObjects
+        - optionalAdditionalFacade
+        + subsystemOperation()
+    }
+
+    class Additional Facade {
+        + annotherOperation()
+    }
+
+    class Subsystem1 {
         +String
         +getCoffee()
     }
 
-    class CoffeeMachine {
-        +String
-        +on()
-        +prepare()
-    }
-
-    class Delivery {
+    class Subsystem2 {
         +String
         +send()
     }
