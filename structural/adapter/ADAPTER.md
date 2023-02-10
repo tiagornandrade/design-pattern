@@ -1,26 +1,56 @@
 [Voltar](../../README.md)
 
-## Existing Class
-O Existing Class é um padrão de projeto estrutural que fornece uma interface simplificada para uma biblioteca, um framework, ou qualquer conjunto complexo de classes.
-
 ---
 ### Propósito
-Imagine que você precisa fazer seu código funcionar com um amplo conjunto de objetos que pertencem a uma sofisticada biblioteca ou framework. Normalmente, você precisaria inicializar todos aqueles objetos, rastrear as dependências, executar métodos na ordem correta, e assim por diante.
-
-Como resultado, a lógica de negócio de suas classes vai ficar firmemente acoplada aos detalhes de implementação das classes de terceiros, tornando difícil compreendê-lo e mantê-lo.
-
+O Adapter é um padrão de projeto estrutural que permite objetos com interfaces incompatíveis colaborarem entre si.
 ---
 ### Problema
-Uma fachada é uma classe que fornece uma interface simples para um subsistema complexo que contém muitas partes que se movem. Uma fachada pode fornecer funcionalidades limitadas em comparação com trabalhar com os subsistemas diretamente. Contudo, ela inclui apenas aquelas funcionalidades que o cliente se importa.
+Imagine que você está criando uma aplicação de monitoramento do mercado de ações da bolsa. A aplicação baixa os dados as ações de múltiplas fontes em formato XML e então mostra gráficos e diagramas maneiros para o usuário.
 
-Ter uma fachada é útil quando você precisa integrar sua aplicação com uma biblioteca sofisticada que tem dúzias de funcionalidades, mas você precisa de apenas um pouquinho delas.
+Em algum ponto, você decide melhorar a aplicação ao integrar uma biblioteca de análise de terceiros. Mas aqui está a pegadinha: a biblioteca só trabalha com dados em formato JSON.
 
-Por exemplo, uma aplicação para uma cafeteria onde o cliente só deseja realizar o pedido, e ele não está interessado em ter que pegar o café no deposito, ligar a máquina de café e prepará-lo, e ter que pegar o café para levar até o balcão. Contudo, tudo que ela realmente precisa é uma classe com um único método codificar(nomeDoArquivo, formato). Com uma classe de fachada, esse trabalho é todo resumido em uma única ação.
+Você poderia mudar a biblioteca para que ela funcione com XML. Contudo, isso pode quebrar algum código existente que depende da biblioteca. E pior, você pode não ter acesso ao código fonte da biblioteca para começo de conversa, fazendo dessa abordagem uma tarefa impossível.
 
 ---
 ### Solução
+
+#### Estrutura
+
+##### *Adaptador de objeto*
+Essa implementação usa o princípio de composição do objeto: o adaptador implementa a interface de um objeto e encobre o outro. Ele pode ser implementado em todas as linguagens de programação populares.
+
 ```mermaid
 classDiagram
+    note for Adapter "specialData = convertToServiceFormat(data) \n return serviceMethod(specialData)"
+    Client --|> Client Interface
+    Client Interface <|.. Adapter 
+    Service <|-- Adapter
+
+    class Client {
+
+    }
+    class Client Interface {
+        <<interface>>
+        + method(data)
+    }
+
+    class Adapter {
+        - adaptee: Service
+        + method(data)
+    }
+
+    class Service {
+        ...
+        + serviceMethod(specialData)
+    }
+```
+
+##### *Adaptador de classe*
+Essa implementação utiliza herança: o adaptador herda interfaces de ambos os objetos ao mesmo tempo. Observe que essa abordagem só pode ser implementada em linguagens de programação que suportam herança múltipla, tais como C++.
+
+```mermaid
+classDiagram
+    note for Adapter "specialData = convertToServiceFormat(data) \n return serviceMethod(specialData)"
     Client --|> Existing Class
     Existing Class <|-- Adapter 
     Service <|-- Adapter
@@ -29,14 +59,17 @@ classDiagram
 
     }
     class Existing Class {
+        ...
         + method(data)
     }
 
     class Service {
+        ...
         + serviceMethod(specialData)
     }
 
     class Adapter {
+        ...
         + method()
     }
 ```
