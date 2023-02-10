@@ -29,7 +29,7 @@ Uma analogia a um algoritmo é que ele seria uma receita de comida: ambos têm e
     - [Prototype](./creational/prototype/PROTOTYPE.md)
     - [Singleton](./creational/singleton/SINGLETON.md)
 - [Structural]()
-    - [Adapter](./structural/adapter/README.md)
+    - [Adapter](./structural/adapter/)
     - [Bridge](./structural/bridge/BRIDGE.md)
     - [Composite](./structural/composite/COMPOSITE.md)
     - [Decorator](./structural/decorator/DECORATOR.md)
